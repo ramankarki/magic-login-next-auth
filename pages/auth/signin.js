@@ -1,0 +1,74 @@
+import { FaMagic } from 'react-icons/fa';
+import { Heading, Input, Button } from '@chakra-ui/react';
+
+import { signIn } from 'next-auth/react';
+import { useState } from 'react';
+
+import EmailSentModal from '../../components/EmailSentModal';
+
+import styles from '../../styles/signin.module.scss';
+import { useRouter } from 'next/router';
+
+export default function SignIn() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (loading) return;
+
+    setError(null);
+    setShow(false);
+    setLoading(true);
+
+    signIn('email', {
+      email,
+      redirect: false,
+      callbackUrl: router.query.callbackUrl,
+    })
+      .then(() => {
+        setShow(true);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  };
+
+  return (
+    <>
+      <main
+        className={styles.pageContainer}
+        style={{ filter: show && 'blur(10px)' }}
+      >
+        <FaMagic fontSize="3rem" color="#346DF1" />
+        <Heading as={'h1'}>Sign in to your account</Heading>
+        <form className={styles.form} onSubmit={onSubmit}>
+          <label>
+            <p>Email address</p>
+            <Input
+              placeholder="raman@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <Button
+            isLoading={loading}
+            bgColor="blue.500"
+            color="white"
+            _hover={{ backgroundColor: 'blue.600' }}
+            type="submit"
+          >
+            Sign in
+          </Button>
+        </form>
+      </main>
+      {show && <EmailSentModal email={email} />}
+    </>
+  );
+}
