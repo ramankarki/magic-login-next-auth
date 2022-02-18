@@ -1,13 +1,13 @@
 import { FaMagic } from 'react-icons/fa';
 import { Heading, Input, Button } from '@chakra-ui/react';
-
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import EmailSentModal from '../../components/EmailSentModal';
 
 import styles from '../../styles/signin.module.scss';
-import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function SignIn() {
   const router = useRouter();
@@ -42,6 +42,9 @@ export default function SignIn() {
 
   return (
     <>
+      <Head>
+        <title>Sign In | Login with Raman Magic NextAuth</title>
+      </Head>
       <main
         className={styles.pageContainer}
         style={{ filter: show && 'blur(10px)' }}

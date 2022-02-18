@@ -3,6 +3,7 @@ import { Heading, Text, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import styles from '../styles/home.module.scss';
+import Head from 'next/head';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -10,6 +11,9 @@ export default function Home() {
 
   return (
     <main className={styles.container}>
+      <Head>
+        <title>Login with Raman Magic NextAuth</title>
+      </Head>
       <Heading as={'h1'}>
         Magic Link Authentication in Next.js with NextAuth and MongoDB
       </Heading>
