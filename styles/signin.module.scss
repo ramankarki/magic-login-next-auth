@@ -1,14 +1,11 @@
 .pageContainer {
-  height: 100vh;
-  padding: 2rem 1rem;
+  margin: 4rem 0 2rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   transition: 1000ms ease-out;
 
   h1 {
-    color: #444;
     font-size: 2rem;
     margin-top: 1.5rem;
   }
@@ -26,7 +23,6 @@
 
   p {
     font-size: 1rem;
-    color: #444;
   }
 
   input {
