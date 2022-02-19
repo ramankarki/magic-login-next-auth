@@ -38,11 +38,6 @@ export default function SignIn() {
         setError(error);
         setLoading(false);
       });
-
-    setTimeout(() => {
-      setLoading(false);
-      setShow(true);
-    }, 4000);
   };
 
   console.log(status);
@@ -69,6 +64,16 @@ export default function SignIn() {
           </label>
           <Button
             isLoading={status === 'loading'}
+            bgColor="blue.500"
+            color="white"
+            _hover={{ backgroundColor: 'blue.600' }}
+            type="submit"
+            as="button"
+          >
+            Sign in
+          </Button>
+          <Button
+            isLoading={loading}
             bgColor="blue.500"
             color="white"
             _hover={{ backgroundColor: 'blue.600' }}
