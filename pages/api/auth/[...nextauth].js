@@ -16,6 +16,7 @@ console.log(process.env.NODE_ENV);
 console.log(process.env.EMAIL_FROM);
 console.log(process.env.NEXTAUTH_URL);
 console.log(process.env.MONGODB_URI);
+console.log(process.env.NEXTAUTH_SECRET);
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
