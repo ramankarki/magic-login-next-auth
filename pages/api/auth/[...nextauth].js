@@ -8,6 +8,15 @@ import path from 'path';
 
 import clientPromise from '../../../lib/mongodb';
 
+console.log(process.env.EMAIL_SERVER_HOST);
+console.log(process.env.EMAIL_SERVER_PORT);
+console.log(process.env.EMAIL_SERVER_USER);
+console.log(process.env.EMAIL_SERVER_PASSWORD);
+console.log(process.env.NODE_ENV);
+console.log(process.env.EMAIL_FROM);
+console.log(process.env.NEXTAUTH_URL);
+console.log(process.env.MONGODB_URI);
+
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_SERVER_HOST,
   port: process.env.EMAIL_SERVER_PORT,
