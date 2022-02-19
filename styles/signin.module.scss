@@ -41,6 +41,7 @@
 
 .spinner {
   animation: loading 700ms linear infinite;
+  margin: 0 0.5rem;
 }
 
 @keyframes loading {

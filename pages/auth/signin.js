@@ -65,7 +65,6 @@ export default function SignIn() {
             />
           </label>
           <Button
-            leftIcon={loading && <ImSpinner2 className={styles.spinner} />}
             isDisabled={loading}
             bgColor="blue.500"
             color="white"
@@ -73,6 +72,7 @@ export default function SignIn() {
             type="submit"
             as="button"
           >
+            {loading && <ImSpinner2 className={styles.spinner} />}
             Sign in
           </Button>
         </form>
