@@ -21,9 +21,9 @@ export default function SignIn() {
     e.preventDefault();
     if (loading) return;
 
-    setError(null);
-    setShow(false);
-    setLoading(true);
+    // setError(null);
+    // setShow(false);
+    // setLoading(true);
 
     // signIn('email', {
     //   email,
