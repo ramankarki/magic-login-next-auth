@@ -1,6 +1,6 @@
 import { FaMagic } from 'react-icons/fa';
 import { Heading, Input, Button } from '@chakra-ui/react';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -11,11 +11,10 @@ import Head from 'next/head';
 
 export default function SignIn() {
   const router = useRouter();
-  const { status } = useSession();
 
   const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
 
   const onSubmit = (e) => {
@@ -40,7 +39,7 @@ export default function SignIn() {
       });
   };
 
-  console.log(status);
+  setInterval(() => setLoading(!loading), 2000);
 
   return (
     <>
@@ -63,7 +62,7 @@ export default function SignIn() {
             />
           </label>
           <Button
-            isLoading={status === 'loading' || loading}
+            isLoading={loading}
             bgColor="blue.500"
             color="white"
             _hover={{ backgroundColor: 'blue.600' }}
