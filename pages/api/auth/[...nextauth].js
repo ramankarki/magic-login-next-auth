@@ -70,15 +70,6 @@ export default NextAuth({
     EmailProvider({
       maxAge: 10 * 60, // Magic links are valid for 10 min only
       sendVerificationRequest,
-      // from: process.env.EMAIL_FROM,
-      // server: {
-      //   host: process.env.EMAIL_SERVER_HOST,
-      //   port: process.env.EMAIL_SERVER_PORT,
-      //   auth: {
-      //     user: process.env.EMAIL_SERVER_USER,
-      //     pass: process.env.EMAIL_SERVER_PASSWORD,
-      //   },
-      // },
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),

@@ -1,6 +1,6 @@
 import { FaMagic } from 'react-icons/fa';
 import { Heading, Input, Button } from '@chakra-ui/react';
-import { signIn } from 'next-auth/react';
+import { signIn, getSession, getProviders } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -13,7 +13,6 @@ export default function SignIn() {
   const router = useRouter();
 
   const [email, setEmail] = useState('');
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -22,7 +21,6 @@ export default function SignIn() {
     if (loading) return;
 
     setLoading(true);
-    setError(null);
 
     signIn('email', {
       email,
@@ -34,12 +32,10 @@ export default function SignIn() {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        console.log(error);
         setLoading(false);
       });
   };
-
-  console.log(error);
 
   return (
     <>
@@ -80,4 +76,22 @@ export default function SignIn() {
       )}
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const [providers, session] = await Promise.all([
+    getProviders(),
+    getSession(context),
+  ]);
+
+  if (session) {
+    context.res.writeHead(302, {
+      Location: '/',
+    });
+    return res.end();
+  }
+
+  return {
+    props: { providers, session },
+  };
 }

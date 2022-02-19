@@ -1,11 +1,11 @@
 import { signOut, useSession } from 'next-auth/react';
 import { Heading, Text, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-
-import styles from '../styles/home.module.scss';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
+
+import styles from '../styles/home.module.scss';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -32,6 +32,7 @@ export default function Home() {
         <Button isLoading={status === 'loading'}>
           <Link
             href={'/auth/signin?callbackUrl=' + window?.location.origin || ''}
+            prefetch
           >
             Login
           </Link>
