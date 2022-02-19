@@ -63,17 +63,7 @@ export default function SignIn() {
             />
           </label>
           <Button
-            isLoading={status === 'loading'}
-            bgColor="blue.500"
-            color="white"
-            _hover={{ backgroundColor: 'blue.600' }}
-            type="submit"
-            as="button"
-          >
-            Sign in
-          </Button>
-          <Button
-            isLoading={loading}
+            isLoading={status === 'loading' || loading}
             bgColor="blue.500"
             color="white"
             _hover={{ backgroundColor: 'blue.600' }}
