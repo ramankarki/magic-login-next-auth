@@ -75,6 +75,16 @@ export default function SignIn() {
             {loading && <ImSpinner2 className={styles.spinner} />}
             Sign in
           </Button>
+          <Button
+            isLoading={true}
+            bgColor="blue.500"
+            color="white"
+            _hover={{ backgroundColor: 'blue.600' }}
+            type="submit"
+            as="button"
+          >
+            Sign in
+          </Button>
         </form>
       </main>
       {show && typeof window !== 'undefined' ? (
