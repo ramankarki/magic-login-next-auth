@@ -22,20 +22,21 @@ export default function SignIn() {
     if (loading) return;
 
     setLoading(true);
+    setError(null);
 
-    // signIn('email', {
-    //   email,
-    //   redirect: false,
-    //   callbackUrl: router.query.callbackUrl,
-    // })
-    //   .then(() => {
-    //     setShow(true);
-    //     setLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     setError(error);
-    //     setLoading(false);
-    //   });
+    signIn('email', {
+      email,
+      redirect: false,
+      callbackUrl: router.query.callbackUrl,
+    })
+      .then(() => {
+        setShow(true);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
 
     setTimeout(() => {
       setLoading(false);
@@ -65,7 +66,7 @@ export default function SignIn() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <Button
+          {/* <Button
             isLoading={loading}
             bgColor="blue.500"
             color="white"
@@ -73,7 +74,8 @@ export default function SignIn() {
             type="submit"
           >
             Sign in
-          </Button>
+          </Button> */}
+          <button>{loading ? 'Loading...' : 'sign in'}</button>
         </form>
       </main>
       {show && typeof window !== 'undefined' ? (
