@@ -1,5 +1,4 @@
 import { FaMagic } from 'react-icons/fa';
-import { ImSpinner2 } from 'react-icons/im';
 import { Heading, Input, Button } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
@@ -64,17 +63,6 @@ export default function SignIn() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <Button
-            isDisabled={loading}
-            bgColor="blue.500"
-            color="white"
-            _hover={{ backgroundColor: 'blue.600' }}
-            type="submit"
-            as="button"
-          >
-            {loading && <ImSpinner2 className={styles.spinner} />}
-            Sign in
-          </Button>
           <Button
             isLoading={loading}
             bgColor="blue.500"
