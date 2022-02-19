@@ -40,6 +40,8 @@ export default function SignIn() {
       });
   };
 
+  console.log(error);
+
   return (
     <>
       <Head>
@@ -71,7 +73,11 @@ export default function SignIn() {
           </Button>
         </form>
       </main>
-      {show && <EmailSentModal email={email} />}
+      {show && typeof window !== 'undefined' ? (
+        <EmailSentModal email={email} />
+      ) : (
+        ''
+      )}
     </>
   );
 }
