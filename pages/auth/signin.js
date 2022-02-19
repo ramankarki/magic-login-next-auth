@@ -1,20 +1,23 @@
 import { FaMagic } from 'react-icons/fa';
+import { ImSpinner2 } from 'react-icons/im';
 import { Heading, Input, Button } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import EmailSentModal from '../../components/EmailSentModal';
 
 import styles from '../../styles/signin.module.scss';
-import Head from 'next/head';
 
 export default function SignIn() {
+  console.log(styles);
+
   const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
 
   const onSubmit = (e) => {
@@ -39,7 +42,7 @@ export default function SignIn() {
       });
   };
 
-  setInterval(() => setLoading(!loading), 2000);
+  console.log(error);
 
   return (
     <>
@@ -62,7 +65,8 @@ export default function SignIn() {
             />
           </label>
           <Button
-            isLoading={loading}
+            leftIcon={loading && <ImSpinner2 className={styles.spinner} />}
+            isDisabled={loading}
             bgColor="blue.500"
             color="white"
             _hover={{ backgroundColor: 'blue.600' }}
@@ -71,7 +75,6 @@ export default function SignIn() {
           >
             Sign in
           </Button>
-          <button>{loading ? 'Loading...' : 'sign in'}</button>
         </form>
       </main>
       {show && typeof window !== 'undefined' ? (
