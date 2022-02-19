@@ -76,7 +76,7 @@ export default function SignIn() {
             Sign in
           </Button>
           <Button
-            isLoading={true}
+            isLoading={loading}
             bgColor="blue.500"
             color="white"
             _hover={{ backgroundColor: 'blue.600' }}
