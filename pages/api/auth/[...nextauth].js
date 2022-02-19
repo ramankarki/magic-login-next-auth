@@ -25,7 +25,6 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_SERVER_USER,
     pass: process.env.EMAIL_SERVER_PASSWORD,
   },
-  secure: process.env.NODE_ENV === 'production',
 });
 
 const emailsDir = path.resolve(process.cwd(), 'emails');
@@ -36,16 +35,18 @@ const sendVerificationRequest = ({ identifier, url }) => {
   });
   const emailTemplate = Handlebars.compile(emailFile);
 
-  transporter.sendMail({
-    from: `🪄 Login with Raman Magic NextAuth" ${process.env.EMAIL_FROM}`,
-    to: identifier,
-    subject: 'Your sign-in link for Login with Raman Magic NextAuth',
-    html: emailTemplate({
-      signin_url: url,
-      email: identifier,
-      base_url: process.env.NEXTAUTH_URL.replace('/api/auth', ''),
-    }),
-  });
+  transporter
+    .sendMail({
+      from: `🪄 Login with Raman Magic NextAuth" ${process.env.EMAIL_FROM}`,
+      to: identifier,
+      subject: 'Your sign-in link for Login with Raman Magic NextAuth',
+      html: emailTemplate({
+        signin_url: url,
+        email: identifier,
+        base_url: process.env.NEXTAUTH_URL.replace('/api/auth', ''),
+      }),
+    })
+    .catch((error) => console.log(error));
 };
 
 const sendWelcomeEmail = async ({ user }) => {
