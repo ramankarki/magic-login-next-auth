@@ -4,8 +4,6 @@ import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
-  console.log(colorMode);
-
   return (
     <header>
       <Box

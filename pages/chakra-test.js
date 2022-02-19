@@ -10,6 +10,9 @@ const Chakratest = () => {
       color="transparent"
       bgClip="text"
       _hover={{ backgroundColor: 'transparent' }}
+      fontSize="5xl"
+      border="1px solid red"
+      p="3rem"
     >
       this is something wrong
     </Button>

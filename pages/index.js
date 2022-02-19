@@ -4,10 +4,16 @@ import { useRouter } from 'next/router';
 
 import styles from '../styles/home.module.scss';
 import Head from 'next/head';
+import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch('/auth/signin');
+  });
 
   return (
     <main className={styles.container}>
@@ -22,15 +28,16 @@ export default function Home() {
           <Text>Logged in as {session.user.email}</Text>
           <Button onClick={signOut}>Logout</Button>
         </>
-      ) : (
-        <Button
-          onClick={() =>
-            router.push('/auth/signin?callbackUrl=http://localhost:3000/')
-          }
-          isLoading={status === 'loading'}
-        >
-          Login
+      ) : typeof window !== 'undefined' ? (
+        <Button isLoading={status === 'loading'}>
+          <Link
+            href={'/auth/signin?callbackUrl=' + window?.location.origin || ''}
+          >
+            Login
+          </Link>
         </Button>
+      ) : (
+        ''
       )}
     </main>
   );
