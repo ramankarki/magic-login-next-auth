@@ -1,6 +1,6 @@
 import { FaMagic } from 'react-icons/fa';
 import { Heading, Input, Button } from '@chakra-ui/react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -11,6 +11,7 @@ import Head from 'next/head';
 
 export default function SignIn() {
   const router = useRouter();
+  const { status } = useSession();
 
   const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
@@ -44,7 +45,7 @@ export default function SignIn() {
     }, 4000);
   };
 
-  console.log(error);
+  console.log(status);
 
   return (
     <>
@@ -66,8 +67,8 @@ export default function SignIn() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          {/* <Button
-            isLoading={loading}
+          <Button
+            isLoading={status === 'loading'}
             bgColor="blue.500"
             color="white"
             _hover={{ backgroundColor: 'blue.600' }}
@@ -75,7 +76,7 @@ export default function SignIn() {
             as="button"
           >
             Sign in
-          </Button> */}
+          </Button>
           <button>{loading ? 'Loading...' : 'sign in'}</button>
         </form>
       </main>
