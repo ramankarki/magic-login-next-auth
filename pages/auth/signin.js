@@ -10,8 +10,6 @@ import EmailSentModal from '../../components/EmailSentModal';
 import styles from '../../styles/signin.module.scss';
 
 export default function SignIn() {
-  console.log(styles);
-
   const router = useRouter();
 
   const [email, setEmail] = useState('');
