@@ -25,19 +25,24 @@ export default function SignIn() {
     setShow(false);
     setLoading(true);
 
-    signIn('email', {
-      email,
-      redirect: false,
-      callbackUrl: router.query.callbackUrl,
-    })
-      .then(() => {
-        setShow(true);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+    // signIn('email', {
+    //   email,
+    //   redirect: false,
+    //   callbackUrl: router.query.callbackUrl,
+    // })
+    //   .then(() => {
+    //     setShow(true);
+    //     setLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     setError(error);
+    //     setLoading(false);
+    //   });
+
+    setTimeout(() => {
+      setLoading(false);
+      setShow(true);
+    }, 4000);
   };
 
   console.log(error);
