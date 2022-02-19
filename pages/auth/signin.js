@@ -85,10 +85,12 @@ export async function getServerSideProps(context) {
   ]);
 
   if (session) {
-    context.res.writeHead(302, {
-      Location: '/',
-    });
-    return res.end();
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/',
+      },
+    };
   }
 
   return {
